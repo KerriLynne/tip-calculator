@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tip Calculator</title>
+</head>
+<body>
+    <h1>Dine in Total</h1>
+    <h1>$20</h1>
+    <h1>Take out/Delivery Total</h1>
+    <h1>$20</h1>
+
+    <form>
+        <label for="category">Category</label>
+            <p>
+                <select id="category">
+                    <option>Choose a Category</option>
+                    <option>Dine In</option>
+                    <option>Take Out/ Delivery</option>
+                </select>
+            </p>
+            <label for="bill">How much was your bill?</label>
+            <p>
+                $ <input id="bill" type="text" placeholder="Bill Amount">
+            </p>
+            <label for="tip">What % tip would you like to give?</label>
+            <p>
+                 <input id="tip" type="text" placeholder="Tip Amount"> %
+            </p>
+            <label for="people">How many people are splitting the bill?</label>
+            <p>
+                 <input id="people" type="text" placeholder="People">
+                 <br>
+                 <br>
+                 <button type="button" id="calculate">Calculate</button>
+            </p>
+    </form>
+
+    <h2>Total Amount:</h2>
+    <h2>$<span id="total"></span></h2>
+
+    <h2>Total Per Person:</h2>
+    <h2>$<span id="perperson"></span></h2>
+    <script src="src/index.js" type="application/javascript"></script>
+</body>
+</html>
