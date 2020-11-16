@@ -1,21 +1,48 @@
-
-fetch("http://localhost:3000/categories")
-.then(resp => resp.json())
-.then(categories => {
+const displayCategories = categories => {
     var select = document.getElementById("category");
     var totals = document.getElementById("totals");
 
     categories.forEach(category => {
+        // create options in categories dropdown
         var option = document.createElement("option");
         option.text = category.name;
         option.value = category.id;
         select.add(option);
+        // create category headers
+        var div = document.createElement("div");
+        div.id = "category-" + category.id;
         var h1 = document.createElement("h1");
         h1.innerHTML = category.name + " Total";
-        totals.append(h1);
+        div.append(h1);
+        totals.append(div);
     })
-})
-.catch(error => console.log(error.message))
+}
+
+const displayMeals = () => {
+    fetch("http://localhost:3000/meals")
+    .then(resp => resp.json())
+    .then(meals => {
+        var totals = document.getElementById("totals");
+
+        meals.forEach(meal => {
+
+            // 
+            var h2 = document.createElement("h2");
+            h2.innerHTML = "$" + meal.amount;
+            totals.append(h2);
+        })
+    })
+    .catch(error => console.log(error.message))
+}
+
+// load the categories from rails 
+fetch("http://localhost:3000/categories")
+.then(resp => resp.json())
+.then(categories => {
+    displayCategories(categories);
+    displayMeals();
+    })
+    .catch(error => console.log(error.message))
 
 
 document.getElementById("calculate").addEventListener(

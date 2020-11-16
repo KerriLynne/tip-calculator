@@ -3,10 +3,23 @@
     <link rel="stylesheet" href="src/application.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Tip Calculator</title>
+    <title>Bill Buddy</title>
+
+    <link rel="icon" type="image/png" href="assets/denisa-dev.png">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div id="totals"> </div>
+<!-- added this in-->
+    <div class="container-fluid">
+        <div class="overlay">
+            <h1>Bill Buddy</h1>
+            <hr class="white">
+<!-- added this in-->
 
     <form>
         <label for="category">Category</label>
@@ -41,7 +54,10 @@
         <br>
         <button type="button" id="save_meal">Save Meal</button>
     </div>
-
+    <div id="totals"> </div>
+    <hr>
+        </div>
+    </div>
 
     <script src="src/index.js" type="application/javascript"></script>
    
