@@ -1,22 +1,18 @@
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="src/application.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Tip Calculator</title>
 </head>
 <body>
-    <h1>Dine in Total</h1>
-    <h1>$20</h1>
-    <h1>Take out/Delivery Total</h1>
-    <h1>$20</h1>
+    <div id="totals"> </div>
 
     <form>
         <label for="category">Category</label>
             <p>
                 <select id="category">
                     <option>Choose a Category</option>
-                    <option>Dine In</option>
-                    <option>Take Out/ Delivery</option>
                 </select>
             </p>
             <label for="bill">How much was your bill?</label>
@@ -35,12 +31,19 @@
                  <button type="button" id="calculate">Calculate</button>
             </p>
     </form>
+    <div id="results" class="hidden"> 
+        <h2>Total Amount:</h2>
+        <h2>$<span id="total"></span></h2>
 
-    <h2>Total Amount:</h2>
-    <h2>$<span id="total"></span></h2>
+        <h2>Total Per Person:</h2>
+        <h2>$<span id="perperson"></span></h2>
+        <br>
+        <br>
+        <button type="button" id="save_meal">Save Meal</button>
+    </div>
 
-    <h2>Total Per Person:</h2>
-    <h2>$<span id="perperson"></span></h2>
+
     <script src="src/index.js" type="application/javascript"></script>
+   
 </body>
 </html>
