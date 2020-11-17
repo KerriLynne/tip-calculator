@@ -26,12 +26,15 @@ const displayMeals = () => {
     fetch("http://localhost:3000/meals")
     .then(resp => resp.json())
     .then(meals => {
+        // created a subtotals object
         var subtotals = {};
+        //iterating through the meals and adding them to subtotal object
         meals.forEach(meal => {
             subtotals[meal.category_id] = subtotals[meal.category_id] || 0;
             subtotals[meal.category_id] += meal.amount;
             appendMeal(meal);
         })
+        // for loop displaying the subtotals
         for (const [category_id, subtotal] of Object.entries(subtotals)) {
             document.getElementById("subtotal-" + category_id).innerHTML = subtotal.toFixed(2);
         }
@@ -40,12 +43,12 @@ const displayMeals = () => {
 }
 
 const appendMeal = meal => {
-
-        var categoryTotals = document.getElementById("category-" + meal.category_id);
-                    
+    //finding each category & creating an h2
+        var categoryTotals = document.getElementById("category-" + meal.category_id);       
         var h2 = document.createElement("h2");
-
+    //telling h2 what it will hold
         h2.innerHTML = "$" + meal.amount.toFixed(2);
+    //appending h2 to category totals
         categoryTotals.append(h2);
 }
 
@@ -61,7 +64,6 @@ fetch("http://localhost:3000/categories")
 
 document.getElementById("calculate").addEventListener(
     "click", () => {
-        // (bill * tip / 100) / people
         const bill = document.getElementById("bill").value;
         const tip = document.getElementById("tip").value;
         const people = document.getElementById("people").value;
