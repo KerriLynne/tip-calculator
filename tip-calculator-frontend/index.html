@@ -24,21 +24,21 @@
     <form>
         <label for="category">Category</label>
             <p>
-                <select id="category">
+                <select id="category" class="setToDefault">
                     <option>Choose a Category</option>
                 </select>
             </p>
             <label for="bill">How much was your bill?</label>
             <p>
-                $ <input id="bill" type="text" placeholder="Bill Amount">
+                $ <input id="bill" type="text" placeholder="Bill Amount" class="setToDefault">
             </p>
             <label for="tip">What % tip would you like to give?</label>
             <p>
-                 <input id="tip" type="text" placeholder="Tip Amount"> %
+                 <input id="tip" type="text" placeholder="Tip Amount" class="setToDefault"> %
             </p>
             <label for="people">How many people are splitting the bill?</label>
             <p>
-                 <input id="people" type="text" placeholder="People">
+                 <input id="people" type="text" placeholder="People" class="setToDefault">
                  <br>
                  <br>
                  <button type="button" id="calculate">Calculate</button>
@@ -59,7 +59,10 @@
         </div>
     </div>
 
+    <script src="src/meal.js" type="application/javascript"></script>
+    <script src="src/category.js" type="application/javascript"></script>
     <script src="src/index.js" type="application/javascript"></script>
+   
    
 </body>
 </html>

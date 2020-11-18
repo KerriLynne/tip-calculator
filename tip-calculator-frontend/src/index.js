@@ -1,65 +1,10 @@
-const displayCategories = categories => {
-    var select = document.getElementById("category");
-    var totals = document.getElementById("totals");
+Category.displayAll(Meal.displayAll)
 
-    categories.forEach(category => {
-        // create options in categories dropdown
-        var option = document.createElement("option");
-        option.text = category.name;
-        option.value = category.id;
-        select.add(option);
-        // create category headers
-        var div = document.createElement("div");
-        var subtotal = document.createElement("span");
-        subtotal.id = "subtotal-" + category.id;
-        subtotal.innerHTML = 0
-        div.id = "category-" + category.id;
-        var h1 = document.createElement("h1");
-        h1.innerHTML = "Your " + category.name + " Total: $";
-        div.append(h1);
-        totals.append(div);
-        h1.append(subtotal)
-    })
-}
-
-const displayMeals = () => {
-    fetch("http://localhost:3000/meals")
-    .then(resp => resp.json())
-    .then(meals => {
-        // created a subtotals object
-        var subtotals = {};
-        //iterating through the meals and adding them to subtotal object
-        meals.forEach(meal => {
-            subtotals[meal.category_id] = subtotals[meal.category_id] || 0;
-            subtotals[meal.category_id] += meal.amount;
-            appendMeal(meal);
-        })
-        // for loop displaying the subtotals
-        for (const [category_id, subtotal] of Object.entries(subtotals)) {
-            document.getElementById("subtotal-" + category_id).innerHTML = subtotal.toFixed(2);
-        }
-    })
-    .catch(error => console.log(error.message))
-}
-
-const appendMeal = meal => {
-    //finding each category & creating an h2
-        var categoryTotals = document.getElementById("category-" + meal.category_id);       
-        var h2 = document.createElement("h2");
-    //telling h2 what it will hold
-        h2.innerHTML = "$" + meal.amount.toFixed(2);
-    //appending h2 to category totals
-        categoryTotals.append(h2);
-}
-
-// load the categories from rails 
-fetch("http://localhost:3000/categories")
-.then(resp => resp.json())
-.then(categories => {
-    displayCategories(categories);
-    setTimeout(displayMeals, 1000);
-    })
-    .catch(error => console.log(error.message))
+// Category.displayAll(
+//     function() {
+//         Meal.displayAll)();
+//     }
+// )
 
 
 document.getElementById("calculate").addEventListener(
@@ -78,27 +23,19 @@ document.getElementById("calculate").addEventListener(
 
 document.getElementById("save_meal").addEventListener(
     "click", () => {
-        const data = {
+        Meal.save({
             amount: parseFloat(document.getElementById("perperson").innerHTML),
             category_id: document.getElementById("category").value
-        }
-        fetch("http://localhost:3000/meals", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        })
-        .then(resp => {
-            if (resp.ok) {
-                appendMeal(data);
-                var span = document.getElementById("subtotal-" + data.category_id);
-                span.innerHTML = (parseFloat(span.innerHTML) + data.amount).toFixed(2);
-            } else {
-                alert("unable to save")
+        },
+        () => {
+            var obj = document.getElementsByClassName("setToDefault");
+            for (var i = 0; i < obj.length; i++) {
+                obj[i].value = obj[i].defaultValue;
+                if (obj[i].selectedIndex) {
+                    obj[i].selectedIndex = 0
+                }
             }
-
         })
-        .catch(error => console.log(error.message))
     }
     
 )
