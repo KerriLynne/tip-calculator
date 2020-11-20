@@ -28,6 +28,15 @@ class Meal {
             h2.innerHTML = `${date.getMonth() + 1}/${date.getDate()} - $${meal.amount.toFixed(2)}`;
         //appending h2 to category totals
             categoryTotals.append(h2);
+
+            var button = document.createElement("button")
+            button.innerHTML = "x"
+            h2.append(button)
+            button.addEventListener("click", this.delete)
+    }
+
+    static delete = () => {
+        console.log(this)
     }
 
     static save = (data, callback) => {
