@@ -8,7 +8,8 @@ Category.displayAll(Meal.displayAll)
 
 
 document.getElementById("calculate").addEventListener(
-    "click", () => {
+    "submit", (e) => {
+        e.preventDefault();
         const bill = document.getElementById("bill").value;
         const tip = document.getElementById("tip").value;
         const people = document.getElementById("people").value;

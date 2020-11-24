@@ -21,27 +21,27 @@
             <hr class="white">
 <!-- added this in-->
 
-    <form>
+    <form id="calculate">
         <label for="category">Category</label>
             <p>
-                <select id="category" class="setToDefault">
-                    <option>Choose a Category</option>
+                <select id="category" class="setToDefault" required>
+                    <option value="">Choose a Category</option>
                 </select>
             </p>
             <label for="bill">How much was your bill?</label>
             <p>
-                $ <input id="bill" type="text" placeholder="Bill Amount" class="setToDefault">
+                $ <input id="bill" type="number" placeholder="Bill Amount" class="setToDefault" min="0" required>
             </p>
             <label for="tip">What % tip would you like to give?</label>
             <p>
-                 <input id="tip" type="text" placeholder="Tip Amount" class="setToDefault"> %
+                 <input id="tip" type="number" placeholder="Tip Amount" class="setToDefault" min="0" required> %
             </p>
             <label for="people">How many people are splitting the bill?</label>
             <p>
-                 <input id="people" type="text" placeholder="People" class="setToDefault">
+                 <input id="people" type="number" placeholder="People" class="setToDefault" min="1" value="1" required>
                  <br>
                  <br>
-                 <button type="button" id="calculate">Calculate</button>
+                 <input type="submit" value="Calculate" >
             </p>
     </form>
     <div id="results" class="hidden"> 
