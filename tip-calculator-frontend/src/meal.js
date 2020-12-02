@@ -42,7 +42,7 @@ class Meal {
 
         //telling h2 what it will hold
             
-            h2.innerHTML = `${this.date.getMonth() + 1}/${this.date.getDate()} - $${this.amount.toFixed(2)}`;
+            h2.innerHTML = `${this.date.getMonth() + 1}/${this.date.getDate()} - $${this.amount.toFixed(2)} `;
         //appending h2 to category totals
             categoryTotals.append(h2);
 
