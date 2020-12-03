@@ -14,14 +14,20 @@ class Meal {
         // created a subtotals object
         static subtotals = {};
 
-    static displayAll = () => {
+        
+
+    static displayAll = (filterFunction) => {
         fetch("http://localhost:3000/meals")
-        .then(resp => resp.json())
+        .then(resp => resp.json()) //after fetch has been returned it will call the function
         .then(meals => {
+            meals = meals.map(meal => new Meal(meal))
+            if (filterFunction) {
+                meals = meals.filter(filterFunction)
+            }
 
             //iterating through the meals and adding them to subtotal object
+            //taking meals array, filtering it by filterFucnction and then looping through with forEach
             meals.forEach(meal => {
-                meal = new Meal(meal)
                 this.subtotals[meal.category_id] = this.subtotals[meal.category_id] || 0;
                 this.subtotals[meal.category_id] += meal.amount;
                 meal.append();
@@ -39,6 +45,7 @@ class Meal {
             var categoryTotals = document.getElementById("category-" + this.category_id);       
             var h2 = document.createElement("h2");
             h2.id = "meal-" + this.id;
+            h2.className = "meal";
 
         //telling h2 what it will hold
             
@@ -88,11 +95,14 @@ class Meal {
         })
         .then(resp => {
             if (resp.ok) {
-                var meal = new Meal(data)
-                meal.append()
-                this.subtotals[meal.category_id] = meal.amount + this.subtotals[meal.category_id]
-                document.getElementById("subtotal-" + meal.category_id).innerHTML = this.subtotals[meal.category_id].toFixed(2)
-                callback()
+                resp.json() //parsing json and returning a promise
+                .then(meal => {
+                    meal = new Meal(meal)
+                    meal.append()
+                    this.subtotals[meal.category_id] = meal.amount + this.subtotals[meal.category_id]
+                    document.getElementById("subtotal-" + meal.category_id).innerHTML = this.subtotals[meal.category_id].toFixed(2)
+                    callback()
+                })
             } else {
                 alert("unable to save")
             }

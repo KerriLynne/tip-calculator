@@ -1,5 +1,6 @@
 Category.displayAll(Meal.displayAll)
 
+//when the page loads, displaying all the catgories
 // Category.displayAll(
 //     function() {
 //         Meal.displayAll)();
@@ -40,5 +41,35 @@ document.getElementById("save_meal").addEventListener(
     }
     
 )
+//added for dropdown
+document.getElementById("dropdown").addEventListener(
+    "change", (e) => {
+        var elements = document.getElementsByClassName("meal");
+        //iterating through backwards due to a live array (changes when deleting from it)
+        for (var i = elements.length - 1; i >= 0; i--) {
+            elements[i].remove()
+        }
+        elements = document.getElementsByClassName("js-subtotal")
+        for (var i = elements.length - 1; i >= 0; i--) {
+            elements[i].innerHTML = ""
+        }
+        Meal.subtotals = {}
+        // Meal.displayAll(meal => {
+        //     var targetMonth = document.getElementById("dropdown").value
+        //     if (targetMonth == "") {
+        //         return true
+        //     } else {
+        //         return meal.date.getMonth() == targetMonth
+        //     }
+        // })
+        var targetMonth = document.getElementById("dropdown").value
+        var filterFunction
+        if (targetMonth != "") {
+            filterFunction = meal => meal.date.getMonth() == targetMonth
+        }
+        Meal.displayAll(filterFunction)
+    }
+)
+
 
 

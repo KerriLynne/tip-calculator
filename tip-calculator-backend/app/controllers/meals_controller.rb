@@ -5,8 +5,8 @@ class MealsController < ApplicationController
     end
 
     def create
-        Meal.create!(params[:meal].permit(:amount, :category_id))
-        head :ok
+        meal = Meal.create!(params[:meal].permit(:amount, :category_id))
+        render json: meal
     end
 
     def destroy

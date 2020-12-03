@@ -13,6 +13,7 @@ class Category {
             var div = document.createElement("div");
             var subtotal = document.createElement("span");
             subtotal.id = "subtotal-" + category.id;
+            subtotal.className = "js-subtotal"
             subtotal.innerHTML = 0
             div.id = "category-" + category.id;
             var h1 = document.createElement("h1");
