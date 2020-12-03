@@ -10,9 +10,11 @@ class Meal {
         } else {
             this.date = new Date()
         }
+        Meal.meals.push(this)
     }
         // created a subtotals object
         static subtotals = {};
+        static meals = [];
 
         
 
@@ -26,7 +28,7 @@ class Meal {
             }
 
             //iterating through the meals and adding them to subtotal object
-            //taking meals array, filtering it by filterFucnction and then looping through with forEach
+            //taking meals array, filtering it by filterFunction and then looping through with forEach
             meals.forEach(meal => {
                 this.subtotals[meal.category_id] = this.subtotals[meal.category_id] || 0;
                 this.subtotals[meal.category_id] += meal.amount;

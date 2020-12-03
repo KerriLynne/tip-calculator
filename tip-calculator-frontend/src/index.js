@@ -71,5 +71,20 @@ document.getElementById("dropdown").addEventListener(
     }
 )
 
+document.getElementById("order").addEventListener(
+    "click", () => {
+        Meal.meals.sort(function (a, b) {
+            return a.amount - b.amount;
+        });
+
+        elements = document.querySelectorAll("h2")
+        for (var i = elements.length - 1; i >= 0; i--) {
+            elements[i].innerHTML = "" 
+        }
+        Meal.meals.forEach(meal => {
+            meal.append();
+        })
+    })
+
 
 
