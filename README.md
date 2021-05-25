@@ -8,15 +8,11 @@ This application was created to be at your fingertips anytime you are dining eit
 
 2. Load the repository in your favorite development software.
 
-3. Run: ```npm install```
-
 ## Usage
 
-1. Run: ```npm start```
+1. cd into tip-calculator-backend
 
-2. cd into tip-calculator-backend
-
-3. Run: ```rails s```
+2. Run: ```rails s```
 
 ## Contributing
 
